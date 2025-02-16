@@ -34,10 +34,10 @@ This command will build the Docker images and start the containers in detached m
 
 Access the application:
 
-Frontend: Open your web browser or Expo Go app and navigate to http://localhost:8081.
-Backend API: The backend API will be available at http://localhost:8000.
-MinIO Console: Access the MinIO console at http://localhost:9001 using the credentials you set in the backend .env file.
-Expo Go: Download the app in one of the appstores and open up `exp://192.168.x.x:8081`
+* Frontend: Open your web browser or Expo Go app and navigate to http://localhost:8081.
+* Backend API: The backend API will be available at http://localhost:8000.
+* MinIO Console: Access the MinIO console at http://localhost:9001 using the credentials you set in the backend .env file.
+* Expo Go: Download the app in one of the appstores and open up `exp://192.168.x.x:8081`
 
 
 ### 4. Running Migrations
@@ -46,9 +46,12 @@ Expo Go: Download the app in one of the appstores and open up `exp://192.168.x.x
 The database migrations are handled automatically when the containers come up.  The dbmate service in the compose.yaml file runs the migrations located in the migrations directory.
 
 ### 5. Key Components
-Frontend (Expo): A React Native application using Expo. The App.js file fetches a message from the backend API. Expo allows you to build web/ios/android apps with ease.
-Backend (FastAPI): A Python API built with FastAPI. It connects to the Postgres database and serves the message. Includes CORS enabled for communication with the Expo frontend. A Python backend is especially useful if you're planning on using ML libraries.
-Database (Postgres): A relational database storing the app's data.
-Object Storage (MinIO): This is mainly for local testing. It's an S3-compatible object (blob) storage service and makes it easy to test, though in production I'd likely use S3 or Cloudflare R2.
-Docker Compose: Used to orchestrate all the services, making it easy to manage and run the application.
-dbmate: Used to manage the database. Ideally all changes to the DB (create table, index, static data, etc) would live in a DB migration file to make maintenance easy.
+* Frontend (Expo): A React Native application using Expo. The App.js file fetches a message from the backend API. Expo allows you to build web/ios/android apps with ease.
+* Backend (FastAPI): A Python API built with FastAPI. It connects to the Postgres database and serves the message. Includes CORS enabled for communication with the Expo frontend. A Python backend is especially useful if you're planning on using ML libraries.
+* Database (Postgres): A relational database storing the app's data.
+* Object Storage (MinIO): This is mainly for local testing. It's an S3-compatible object (blob) storage service and makes it easy to test, though in production I'd likely use S3 or Cloudflare R2.
+* Docker Compose: Used to orchestrate all the services, making it easy to manage and run the application.
+* dbmate: Used to manage the database. Ideally all changes to the DB (create table, index, static data, etc) would live in a DB migration file to make maintenance easy.
+
+### Questions?
+Feel free to open issues or ask any questions. I'll try to answer as soon as I can, however I can't guarantee that I'll get to them very quickly.
