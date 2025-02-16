@@ -1,4 +1,4 @@
-# PLMRPH Docker Compose Expo FastAPI Postgres Template
+# Docker Compose Expo FastAPI Postgres Template
 
 This repository provides a template for a full-stack application using Expo for the frontend, FastAPI for the backend, Postgres as the database, and MinIO for object storage (S3-compatible).  Everything is orchestrated using Docker Compose.
 
