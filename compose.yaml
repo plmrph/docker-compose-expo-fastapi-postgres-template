@@ -1,0 +1,69 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - backend
+    env_file:
+      - frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    env_file:
+      - backend/.env
+    restart: always
+    volumes:
+      - ./backend:/app
+      - /app/.venv
+
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - backend/.env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 10s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  dbmate:
+    image: amacneil/dbmate
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./migrations:/db/migrations
+    env_file:
+      - backend/.env
+    entrypoint: dbmate up
+
+  minio:
+    image: minio/minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    env_file:
+      - backend/.env
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  postgres_data:
+  minio_data:

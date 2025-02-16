@@ -1,0 +1,25 @@
+# Ignore dependencies
+frontend/node_modules/
+backend/bits_env/
+backend/.venv/
+
+# Ignore package manager lock files 
+frontend/package-lock.json
+
+# Ignore build artifacts
+frontend/.expo/
+frontend/.expo-shared/
+frontend/web-build/
+frontend/.next/
+frontend/build/
+backend/__pycache__/
+backend/.pytest_cache/
+
+# Ignore environment & config files
+frontend/.env
+backend/.env
+
+# Ignore Docker-generated files
+docker-compose.override.yml
+**/postgres_data/
+**/minio_data/
